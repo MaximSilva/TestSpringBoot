@@ -1,6 +1,7 @@
 package model;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,9 +13,11 @@ import java.time.LocalDateTime;
 public class OrderModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private LocalDateTime createdDateTime;
-    private boolean paid;
-    
+    @GeneratedValue (generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String orderId;
+    private double price;
+    private int quantity;
+    private String item;
+
 }
